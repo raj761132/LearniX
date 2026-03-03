@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Dashboard | LearniX</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="student-body">
+
+<!-- Top Profile Bar -->
+<div class="student-top">
+
+    <div class="profile-left">
+        <div class="avatar">
+            <i class="fa-solid fa-user-astronaut"></i>
+        </div>
+        <div>
+            <h3>{{ username }}</h3>
+            <p>Level {{ level }}</p>
+        </div>
+    </div>
+
+    <div class="profile-right">
+        <div class="xp-section">
+            <span>XP: {{ xp }}</span>
+            <div class="xp-bar">
+                <div class="xp-fill" style="width: 60%;"></div>
+            </div>
+        </div>
+
+        <div class="coins">
+            <i class="fa-solid fa-coins"></i> {{ coins }}
+        </div>
+
+        <a href="/logout" class="logout-btn">
+            <i class="fa-solid fa-right-from-bracket"></i>
+        </a>
+    </div>
+
+</div>
+
+<!-- Main Game Section -->
+<section class="game-section">
+
+    <div class="main-game-card">
+        <i class="fa-solid fa-calculator"></i>
+        <h2>Start Math Challenge</h2>
+        <p>Solve as many problems as you can before time runs out!</p>
+        <button class="start-btn">Start Game</button>
+    </div>
+
+</section>
+
+<!-- Module Section -->
+<section class="modules">
+
+    <h2>Available Math Modules</h2>
+
+    <div class="module-grid">
+
+        <div class="module-card">
+            <i class="fa-solid fa-plus"></i>
+            <h4>Addition</h4>
+        </div>
+
+        <div class="module-card">
+            <i class="fa-solid fa-minus"></i>
+            <h4>Subtraction</h4>
+        </div>
+
+        <div class="module-card">
+            <i class="fa-solid fa-xmark"></i>
+            <h4>Multiplication</h4>
+        </div>
+
+        <div class="module-card">
+            <i class="fa-solid fa-divide"></i>
+            <h4>Division</h4>
+        </div>
+
+    </div>
+
+</section>
+
+</body>
+</html>
