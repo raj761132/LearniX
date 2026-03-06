@@ -1,91 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Student Dashboard | LearniX</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Student Dashboard | LearniX</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 </head>
+
 <body class="student-body">
 
-<!-- Top Profile Bar -->
+<!-- ================= TOP PROFILE BAR ================= -->
+
 <div class="student-top">
 
-    <div class="profile-left">
-        <div class="avatar">
-            <i class="fa-solid fa-user-astronaut"></i>
-        </div>
-        <div>
-            <h3>{{ username }}</h3>
-            <p>Level {{ level }}</p>
-        </div>
-    </div>
+<div class="profile-left">
 
-    <div class="profile-right">
-        <div class="xp-section">
-            <span>XP: {{ xp }}</span>
-            <div class="xp-bar">
-                <div class="xp-fill" style="width: 60%;"></div>
-            </div>
-        </div>
+<div class="avatar">
+<i class="fa-solid fa-user-astronaut"></i>
+</div>
 
-        <div class="coins">
-            <i class="fa-solid fa-coins"></i> {{ coins }}
-        </div>
-
-        <a href="/logout" class="logout-btn">
-            <i class="fa-solid fa-right-from-bracket"></i>
-        </a>
-    </div>
+<div>
+<h3>{{ username }}</h3>
+<p>Level {{ level }}</p>
+</div>
 
 </div>
 
-<!-- Main Game Section -->
+
+<div class="profile-right">
+
+<div class="xp-section">
+<span>XP: {{ xp }}</span>
+
+<div class="xp-bar">
+<div class="xp-fill" style="width:60%"></div>
+</div>
+</div>
+
+<div class="coins">
+<i class="fa-solid fa-coins"></i> {{ coins }}
+</div>
+
+<div class="streak">
+🔥 {{ streak }} Day Streak
+</div>
+
+<a href="/logout" class="logout-btn">
+<i class="fa-solid fa-right-from-bracket"></i>
+</a>
+
+</div>
+</div>
+
+
+<!-- ================= DAILY CHALLENGE ================= -->
+
+<section class="daily-challenge">
+
+<h2>🎯 Daily Challenge</h2>
+
+<div class="challenge-card">
+
+<p>Solve <b>5 math questions</b> today to earn</p>
+
+<div class="reward">
+⭐ +20 XP | 🪙 +10 Coins
+</div>
+
+<button class="start-btn">
+Start Challenge
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ================= MAIN GAME ================= -->
+
 <section class="game-section">
 
-    <div class="main-game-card">
-        <i class="fa-solid fa-calculator"></i>
-        <h2>Start Math Challenge</h2>
-        <p>Solve as many problems as you can before time runs out!</p>
-        <button class="start-btn">Start Game</button>
-    </div>
+<div class="main-game-card">
+
+<i class="fa-solid fa-calculator"></i>
+
+<h2>Math Battle Arena</h2>
+
+<p>Solve as many problems before the timer ends!</p>
+
+<button class="start-btn">
+⚡ Start Game
+</button>
+
+</div>
 
 </section>
 
-<!-- Module Section -->
+
+<!-- ================= MODULES ================= -->
+
 <section class="modules">
 
-    <h2>Available Math Modules</h2>
+<h2>📚 Math Modules</h2>
 
-    <div class="module-grid">
+<div class="module-grid">
 
-        <div class="module-card">
-            <i class="fa-solid fa-plus"></i>
-            <h4>Addition</h4>
-        </div>
+<div class="module-card">
+<i class="fa-solid fa-plus"></i>
+<h4>Addition</h4>
+<p>Earn XP</p>
+</div>
 
-        <div class="module-card">
-            <i class="fa-solid fa-minus"></i>
-            <h4>Subtraction</h4>
-        </div>
+<div class="module-card">
+<i class="fa-solid fa-minus"></i>
+<h4>Subtraction</h4>
+<p>Earn XP</p>
+</div>
 
-        <div class="module-card">
-            <i class="fa-solid fa-xmark"></i>
-            <h4>Multiplication</h4>
-        </div>
+<div class="module-card">
+<i class="fa-solid fa-xmark"></i>
+<h4>Multiplication</h4>
+<p>Earn XP</p>
+</div>
 
-        <div class="module-card">
-            <i class="fa-solid fa-divide"></i>
-            <h4>Division</h4>
-        </div>
+<div class="module-card">
+<i class="fa-solid fa-divide"></i>
+<h4>Division</h4>
+<p>Earn XP</p>
+</div>
 
-    </div>
+</div>
 
 </section>
+
+
+<!-- ================= ADVENTURE MAP ================= -->
+
+<section class="adventure">
+
+<h2>🗺 Learning Adventure</h2>
+
+<div class="adventure-map">
+
+<div class="map-node completed">
+🌳 Math Forest
+</div>
+
+<div class="map-node current">
+🏔 Algebra Mountain
+</div>
+
+<div class="map-node locked">
+🏰 Geometry Castle
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= ACHIEVEMENTS ================= -->
+
+<section class="achievements">
+
+<h2>🏅 Achievements</h2>
+
+<div class="badge-grid">
+
+<div class="badge">
+⭐ First Game
+</div>
+
+<div class="badge">
+🔥 5 Day Streak
+</div>
+
+<div class="badge locked">
+🔒 Math Master
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= LEADERBOARD ================= -->
+
+<section class="leaderboard">
+
+<h2>🏆 Village Leaderboard</h2>
+
+<div class="leaderboard-card">
+
+<div class="rank">
+🥇 Rahul — 450 XP
+</div>
+
+<div class="rank">
+🥈 Asha — 390 XP
+</div>
+
+<div class="rank">
+🥉 You — {{ xp }} XP
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= AI STUDY BUDDY ================= -->
+
+<div class="ai-buddy">
+
+<button class="ai-btn">
+🤖 Ask Study Buddy
+</button>
+
+</div>
 
 </body>
 </html>

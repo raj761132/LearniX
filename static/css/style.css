@@ -436,19 +436,27 @@ body{
 
 /* STUDENT DASHBOARD */
 
-.student-body{
-    min-height:100vh;
-    padding-bottom:50px;
+/* ================= GLOBAL ================= */
+
+body{
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    background:#0f172a;
+    color:white;
 }
 
-/* Top Bar */
+h2{
+    margin-bottom:20px;
+}
+
+/* ================= TOP BAR ================= */
 
 .student-top{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:20px 8%;
-    background:rgba(0,0,0,0.2);
+    padding:15px 40px;
+    background:#1e293b;
 }
 
 .profile-left{
@@ -458,10 +466,10 @@ body{
 }
 
 .avatar{
-    font-size:2rem;
-    background:rgba(255,255,255,0.2);
-    padding:15px;
+    background:#3b82f6;
+    padding:12px;
     border-radius:50%;
+    font-size:20px;
 }
 
 .profile-right{
@@ -470,102 +478,193 @@ body{
     gap:20px;
 }
 
+.coins{
+    background:#334155;
+    padding:8px 14px;
+    border-radius:8px;
+}
+
+.streak{
+    background:#334155;
+    padding:8px 14px;
+    border-radius:8px;
+}
+
+/* ================= XP BAR ================= */
+
 .xp-section{
-    text-align:right;
+    display:flex;
+    flex-direction:column;
+    gap:5px;
 }
 
 .xp-bar{
     width:150px;
-    height:10px;
-    background:#eee;
-    border-radius:20px;
-    overflow:hidden;
-    margin-top:5px;
+    height:8px;
+    background:#475569;
+    border-radius:10px;
 }
 
 .xp-fill{
     height:100%;
-    background:linear-gradient(90deg,#ffd60a,#ff9f1c);
+    background:#22c55e;
+    border-radius:10px;
 }
 
-.coins{
-    background:rgba(255,255,255,0.2);
-    padding:8px 15px;
-    border-radius:20px;
+/* ================= DASHBOARD GRID ================= */
+
+.dashboard{
+    padding:40px;
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:30px;
 }
 
-.logout-btn{
-    color:white;
-    font-size:1.2rem;
-}
+/* ================= LEFT SIDE ================= */
 
-/* Game Section */
-
-.game-section{
-    padding:80px 8%;
+.left-panel{
     display:flex;
-    justify-content:center;
+    flex-direction:column;
+    gap:30px;
 }
+
+/* ================= MAIN GAME ================= */
 
 .main-game-card{
-    width:400px;
-    text-align:center;
+    background:#1e293b;
     padding:40px;
-    border-radius:25px;
-    background:rgba(255,255,255,0.15);
-    backdrop-filter:blur(15px);
-    box-shadow:0 25px 50px rgba(0,0,0,0.3);
+    border-radius:15px;
+    text-align:center;
 }
 
 .main-game-card i{
-    font-size:3rem;
-    margin-bottom:20px;
-    color:#ffd60a;
-}
-
-.start-btn{
-    margin-top:20px;
-    padding:12px 25px;
-    border:none;
-    border-radius:30px;
-    background:#ffd60a;
-    font-weight:bold;
-    cursor:pointer;
-    transition:0.3s;
-}
-
-.start-btn:hover{
-    transform:scale(1.1);
-}
-
-/* Modules */
-
-.modules{
-    padding:60px 8%;
-    text-align:center;
-}
-
-.module-grid{
-    display:flex;
-    justify-content:center;
-    gap:30px;
-    flex-wrap:wrap;
-    margin-top:40px;
-}
-
-.module-card{
-    width:150px;
-    padding:25px;
-    border-radius:20px;
-    background:rgba(255,255,255,0.15);
-    transition:0.3s;
-}
-
-.module-card i{
-    font-size:2rem;
+    font-size:40px;
     margin-bottom:10px;
 }
 
+.start-btn{
+    margin-top:15px;
+    padding:12px 20px;
+    border:none;
+    background:#22c55e;
+    color:white;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+/* ================= MODULE GRID ================= */
+
+.module-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.module-card{
+    background:#1e293b;
+    padding:25px;
+    text-align:center;
+    border-radius:12px;
+    transition:0.2s;
+}
+
 .module-card:hover{
-    transform:translateY(-10px);
+    transform:scale(1.05);
+    background:#334155;
+}
+
+.module-card i{
+    font-size:25px;
+    margin-bottom:10px;
+}
+
+/* ================= RIGHT SIDE ================= */
+
+.right-panel{
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+}
+
+/* ================= DAILY CHALLENGE ================= */
+
+.challenge-card{
+    background:#1e293b;
+    padding:25px;
+    border-radius:12px;
+    text-align:center;
+}
+
+/* ================= LEADERBOARD ================= */
+
+.leaderboard-card{
+    background:#1e293b;
+    padding:25px;
+    border-radius:12px;
+}
+
+.rank{
+    padding:8px 0;
+    border-bottom:1px solid #334155;
+}
+
+/* ================= ACHIEVEMENTS ================= */
+
+.badge-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
+
+.badge{
+    background:#334155;
+    padding:10px;
+    text-align:center;
+    border-radius:8px;
+    font-size:14px;
+}
+
+.badge.locked{
+    opacity:0.4;
+}
+
+/* ================= ADVENTURE MAP ================= */
+
+.adventure-map{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.map-node{
+    background:#334155;
+    padding:12px 16px;
+    border-radius:10px;
+}
+
+.map-node.current{
+    background:#22c55e;
+}
+
+.map-node.locked{
+    opacity:0.5;
+}
+
+/* ================= AI BUTTON ================= */
+
+.ai-buddy{
+    position:fixed;
+    bottom:30px;
+    right:30px;
+}
+
+.ai-btn{
+    background:#3b82f6;
+    color:white;
+    border:none;
+    padding:14px 18px;
+    border-radius:30px;
+    cursor:pointer;
+    font-weight:bold;
 }
