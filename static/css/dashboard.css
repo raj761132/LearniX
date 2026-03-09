@@ -1,0 +1,163 @@
+/* GLOBAL */
+
+body{
+font-family:'Nunito',sans-serif;
+margin:0;
+background:#f3f6fb;
+}
+
+/* CONTAINER */
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:30px;
+}
+
+/* TOP BAR */
+
+.topbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 40px;
+background:white;
+box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+.welcome{
+display:flex;
+gap:15px;
+align-items:center;
+}
+
+.avatar{
+background:#667eea;
+color:white;
+padding:12px;
+border-radius:50%;
+}
+
+/* NAVBAR */
+
+.navbar{
+display:flex;
+justify-content:center;
+gap:40px;
+padding:15px;
+background:#eef2ff;
+}
+
+.navbar a{
+text-decoration:none;
+color:#333;
+font-weight:600;
+}
+
+/* DASHBOARD GRID */
+
+.dashboard{
+display:grid;
+grid-template-columns:2fr 1fr;
+gap:30px;
+margin-top:30px;
+}
+
+/* LEFT PANEL */
+
+.left{
+display:flex;
+flex-direction:column;
+gap:30px;
+}
+
+/* RIGHT PANEL */
+
+.right{
+display:flex;
+flex-direction:column;
+gap:30px;
+}
+
+/* ADVENTURE SECTION */
+
+.adventure-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+}
+
+.adventure-card{
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+.adventure-card button{
+margin-top:10px;
+padding:10px 18px;
+border:none;
+background:#667eea;
+color:white;
+border-radius:20px;
+cursor:pointer;
+}
+
+/* GAME SECTION */
+
+.game-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+}
+
+.game-card{
+background:linear-gradient(135deg,#4facfe,#00f2fe);
+color:white;
+padding:30px;
+text-align:center;
+border-radius:15px;
+}
+
+/* PROFILE CARD */
+
+.profile-card{
+background:white;
+padding:25px;
+border-radius:15px;
+text-align:center;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+.avatar-big{
+font-size:45px;
+margin:20px 0;
+}
+
+.xp-bar{
+height:10px;
+background:#ddd;
+border-radius:10px;
+margin-top:10px;
+}
+
+.xp-fill{
+width:60%;
+height:100%;
+background:#667eea;
+border-radius:10px;
+}
+
+/* LEADERBOARD */
+
+.leaderboard{
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+.leaderboard p{
+margin:8px 0;
+}

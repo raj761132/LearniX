@@ -1,227 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
-<title>Student Dashboard | LearniX</title>
+<title>LearniX Dashboard</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
 
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+
 </head>
 
-<body class="student-body">
-    <h1> Hello world </h1>
+<body>
 
-<!-- ================= TOP PROFILE BAR ================= -->
+<!-- ================= TOP BAR ================= -->
 
-<div class="student-top">
+<div class="topbar">
 
-<div class="profile-left">
+<div class="welcome">
 
 <div class="avatar">
 <i class="fa-solid fa-user-astronaut"></i>
 </div>
 
 <div>
-<h3>{{ username }}</h3>
-<p>Level {{ level }}</p>
+<h2>Welcome {{ username }} 👋</h2>
+<p>🔥 {{ streak }} day streak | ⭐ Level {{ level }}</p>
 </div>
 
 </div>
 
+<div class="top-right">
 
-<div class="profile-right">
-
-<div class="xp-section">
-<span>XP: {{ xp }}</span>
-
-<div class="xp-bar">
-<div class="xp-fill" style="width:60%"></div>
-</div>
+<div class="points">
+<i class="fa-solid fa-star"></i> {{ xp }} XP
 </div>
 
 <div class="coins">
 <i class="fa-solid fa-coins"></i> {{ coins }}
 </div>
 
-<div class="streak">
-🔥 {{ streak }} Day Streak
-</div>
-
-<a href="/logout" class="logout-btn">
+<a href="/logout" class="logout">
 <i class="fa-solid fa-right-from-bracket"></i>
 </a>
 
 </div>
+
 </div>
 
 
-<!-- ================= DAILY CHALLENGE ================= -->
+<!-- ================= NAVIGATION ================= -->
 
-<section class="daily-challenge">
+<div class="navbar">
 
-<h2>🎯 Daily Challenge</h2>
+<a class="active">
+<i class="fa-solid fa-chart-line"></i> Dashboard
+</a>
 
-<div class="challenge-card">
+<a>
+<i class="fa-solid fa-book-open"></i> Courses
+</a>
 
-<p>Solve <b>5 math questions</b> today to earn</p>
+<a>
+<i class="fa-solid fa-gamepad"></i> Games
+</a>
 
-<div class="reward">
-⭐ +20 XP | 🪙 +10 Coins
+<a>
+<i class="fa-solid fa-route"></i> Journey
+</a>
+
+<a>
+<i class="fa-solid fa-chart-pie"></i> Progress
+</a>
+
 </div>
 
-<button class="start-btn">
-Start Challenge
+
+<!-- ================= MAIN CONTAINER ================= -->
+
+<div class="container">
+
+<div class="dashboard">
+
+<!-- ================= LEFT SIDE ================= -->
+
+<div class="left">
+
+<!-- DAILY ADVENTURE -->
+
+<section>
+
+<h3><i class="fa-solid fa-bolt"></i> Daily Adventures</h3>
+
+<div class="adventure-grid">
+
+<div class="adventure-card">
+
+<h4><i class="fa-solid fa-plus"></i> Addition Quest</h4>
+
+<p>Solve 5 addition questions</p>
+
+<button>
+<i class="fa-solid fa-play"></i> Start
 </button>
 
 </div>
 
-</section>
+<div class="adventure-card">
 
+<h4><i class="fa-solid fa-xmark"></i> Multiplication Arena</h4>
 
-<!-- ================= MAIN GAME ================= -->
+<p>Beat the timer challenge</p>
 
-<section class="game-section">
-
-<div class="main-game-card">
-
-<i class="fa-solid fa-calculator"></i>
-
-<h2>Math Battle Arena</h2>
-
-<p>Solve as many problems before the timer ends!</p>
-
-<button class="start-btn">
-⚡ Start Game
+<button>
+<i class="fa-solid fa-play"></i> Start
 </button>
 
 </div>
 
+</div>
+
 </section>
 
 
-<!-- ================= MODULES ================= -->
+<!-- FUN GAMES -->
 
-<section class="modules">
+<section>
 
-<h2>📚 Math Modules</h2>
+<h3><i class="fa-solid fa-gamepad"></i> Fun Learning Games</h3>
 
-<div class="module-grid">
+<div class="game-grid">
 
-<div class="module-card">
-<i class="fa-solid fa-plus"></i>
-<h4>Addition</h4>
-<p>Earn XP</p>
+<div class="game-card">
+<i class="fa-solid fa-flag-checkered"></i>
+<p>Math Race</p>
 </div>
 
-<div class="module-card">
-<i class="fa-solid fa-minus"></i>
-<h4>Subtraction</h4>
-<p>Earn XP</p>
+<div class="game-card">
+<i class="fa-solid fa-brain"></i>
+<p>Memory Match</p>
 </div>
 
-<div class="module-card">
-<i class="fa-solid fa-xmark"></i>
-<h4>Multiplication</h4>
-<p>Earn XP</p>
-</div>
-
-<div class="module-card">
-<i class="fa-solid fa-divide"></i>
-<h4>Division</h4>
-<p>Earn XP</p>
+<div class="game-card">
+<i class="fa-solid fa-bolt"></i>
+<p>Quick Quiz</p>
 </div>
 
 </div>
 
 </section>
 
-
-<!-- ================= ADVENTURE MAP ================= -->
-
-<section class="adventure">
-
-<h2>🗺 Learning Adventure</h2>
-
-<div class="adventure-map">
-
-<div class="map-node completed">
-🌳 Math Forest
 </div>
 
-<div class="map-node current">
-🏔 Algebra Mountain
+
+<!-- ================= RIGHT SIDE ================= -->
+
+<div class="right">
+
+<!-- PROFILE CARD -->
+
+<div class="profile-card">
+
+<h3><i class="fa-solid fa-user"></i> Avatar Growth</h3>
+
+<div class="avatar-big">
+<i class="fa-solid fa-user-astronaut"></i>
 </div>
 
-<div class="map-node locked">
-🏰 Geometry Castle
-</div>
+<p>Level {{ level }}</p>
 
-</div>
-
-</section>
-
-
-<!-- ================= ACHIEVEMENTS ================= -->
-
-<section class="achievements">
-
-<h2>🏅 Achievements</h2>
-
-<div class="badge-grid">
-
-<div class="badge">
-⭐ First Game
-</div>
-
-<div class="badge">
-🔥 5 Day Streak
-</div>
-
-<div class="badge locked">
-🔒 Math Master
+<div class="xp-bar">
+<div class="xp-fill"></div>
 </div>
 
 </div>
 
-</section>
 
+<!-- LEADERBOARD -->
 
-<!-- ================= LEADERBOARD ================= -->
+<div class="leaderboard">
 
-<section class="leaderboard">
+<h3><i class="fa-solid fa-trophy"></i> Leaderboard</h3>
 
-<h2>🏆 Village Leaderboard</h2>
+<p>🥇 Ravi — 1250 XP</p>
+<p>🥈 Asha — 1180 XP</p>
+<p>🥉 Rahul — 1040 XP</p>
 
-<div class="leaderboard-card">
-
-<div class="rank">
-🥇 Rahul — 450 XP
-</div>
-
-<div class="rank">
-🥈 Asha — 390 XP
-</div>
-
-<div class="rank">
-🥉 You — {{ xp }} XP
 </div>
 
 </div>
 
-</section>
-
-
-<!-- ================= AI STUDY BUDDY ================= -->
-
-<div class="ai-buddy">
-
-<button class="ai-btn">
-🤖 Ask Study Buddy
-</button>
+</div>
 
 </div>
 
