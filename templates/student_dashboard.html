@@ -1,200 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+
 <meta charset="UTF-8">
 <title>LearniX Dashboard</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
 
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
 
-<!-- ================= TOP BAR ================= -->
-
-<div class="topbar">
-
-<div class="welcome">
-
-<div class="avatar">
-<i class="fa-solid fa-user-astronaut"></i>
-</div>
-
-<div>
-<h2>Welcome {{ username }} 👋</h2>
-<p>🔥 {{ streak }} day streak | ⭐ Level {{ level }}</p>
-</div>
-
-</div>
-
-<div class="top-right">
-
-<div class="points">
-<i class="fa-solid fa-star"></i> {{ xp }} XP
-</div>
-
-<div class="coins">
-<i class="fa-solid fa-coins"></i> {{ coins }}
-</div>
-
-<a href="/logout" class="logout">
-<i class="fa-solid fa-right-from-bracket"></i>
-</a>
-
-</div>
-
-</div>
-
-
-<!-- ================= NAVIGATION ================= -->
+<!-- TOP NAVBAR -->
 
 <div class="navbar">
 
-<a class="active">
-<i class="fa-solid fa-chart-line"></i> Dashboard
-</a>
+<!-- LEFT SIDE -->
 
-<a>
-<i class="fa-solid fa-book-open"></i> Courses
-</a>
+<div class="nav-left">
 
-<a>
-<i class="fa-solid fa-gamepad"></i> Games
-</a>
+<div class="logo">
 
-<a>
-<i class="fa-solid fa-route"></i> Journey
-</a>
+<i class="fa-solid fa-graduation-cap"></i>
+<span>LearniX</span>
 
-<a>
-<i class="fa-solid fa-chart-pie"></i> Progress
-</a>
+</div>
+
+<div class="welcome">
+
+<p class="welcome-text">Welcome, <b>{{ username }}</b></p>
+
+<div class="user-stats">
+
+<span class="streak">
+<i class="fa-solid fa-fire"></i>
+{{ streak }} Day Streak
+</span>
+
+<span class="level">
+<i class="fa-solid fa-star"></i>
+Level {{ level }}
+</span>
+
+</div>
+
+</div>
 
 </div>
 
 
-<!-- ================= MAIN CONTAINER ================= -->
+<!-- RIGHT SIDE -->
 
-<div class="container">
+<div class="nav-right">
 
-<div class="dashboard">
+<button class="points-btn">
 
-<!-- ================= LEFT SIDE ================= -->
+<i class="fa-solid fa-trophy"></i>
+{{ xp }} Points
 
-<div class="left">
-
-<!-- DAILY ADVENTURE -->
-
-<section>
-
-<h3><i class="fa-solid fa-bolt"></i> Daily Adventures</h3>
-
-<div class="adventure-grid">
-
-<div class="adventure-card">
-
-<h4><i class="fa-solid fa-plus"></i> Addition Quest</h4>
-
-<p>Solve 5 addition questions</p>
-
-<button>
-<i class="fa-solid fa-play"></i> Start
 </button>
 
-</div>
+<button class="challenge-btn">
 
-<div class="adventure-card">
-
-<h4><i class="fa-solid fa-xmark"></i> Multiplication Arena</h4>
-
-<p>Beat the timer challenge</p>
-
-<button>
-<i class="fa-solid fa-play"></i> Start
-</button>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- FUN GAMES -->
-
-<section>
-
-<h3><i class="fa-solid fa-gamepad"></i> Fun Learning Games</h3>
-
-<div class="game-grid">
-
-<div class="game-card">
-<i class="fa-solid fa-flag-checkered"></i>
-<p>Math Race</p>
-</div>
-
-<div class="game-card">
-<i class="fa-solid fa-brain"></i>
-<p>Memory Match</p>
-</div>
-
-<div class="game-card">
 <i class="fa-solid fa-bolt"></i>
-<p>Quick Quiz</p>
-</div>
+Challenges
 
-</div>
+</button>
 
-</section>
+<a href="/logout" class="logout-btn">
 
-</div>
+<i class="fa-solid fa-right-from-bracket"></i>
 
-
-<!-- ================= RIGHT SIDE ================= -->
-
-<div class="right">
-
-<!-- PROFILE CARD -->
-
-<div class="profile-card">
-
-<h3><i class="fa-solid fa-user"></i> Avatar Growth</h3>
-
-<div class="avatar-big">
-<i class="fa-solid fa-user-astronaut"></i>
-</div>
-
-<p>Level {{ level }}</p>
-
-<div class="xp-bar">
-<div class="xp-fill"></div>
-</div>
-
-</div>
-
-
-<!-- LEADERBOARD -->
-
-<div class="leaderboard">
-
-<h3><i class="fa-solid fa-trophy"></i> Leaderboard</h3>
-
-<p>🥇 Ravi — 1250 XP</p>
-<p>🥈 Asha — 1180 XP</p>
-<p>🥉 Rahul — 1040 XP</p>
+</a>
 
 </div>
 
 </div>
 
-</div>
+<div class="dashboard-menu">
+
+<a href="/progress" class="menu-btn progress">
+<i class="fa-solid fa-chart-line"></i>
+<span>My Progress</span>
+</a>
+
+<a href="/courses" class="menu-btn courses">
+<i class="fa-solid fa-book-open"></i>
+<span>Courses</span>
+</a>
+
+<a href="/funzone" class="menu-btn funzone">
+<i class="fa-solid fa-gamepad"></i>
+<span>Fun Zone</span>
+</a>
+
+<a href="/quizzes" class="menu-btn quizzes">
+<i class="fa-solid fa-bolt"></i>
+<span>Live Quizzes</span>
+</a>
+
+<a href="/settings" class="menu-btn settings">
+<i class="fa-solid fa-gear"></i>
+<span>Settings</span>
+</a>
 
 </div>
 

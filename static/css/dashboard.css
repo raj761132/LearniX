@@ -1,163 +1,214 @@
-/* GLOBAL */
-
 body{
-font-family:'Nunito',sans-serif;
 margin:0;
-background:#f3f6fb;
-}
-
-/* CONTAINER */
-
-.container{
-max-width:1200px;
-margin:auto;
-padding:30px;
-}
-
-/* TOP BAR */
-
-.topbar{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px 40px;
-background:white;
-box-shadow:0 2px 10px rgba(0,0,0,0.1);
-}
-
-.welcome{
-display:flex;
-gap:15px;
-align-items:center;
-}
-
-.avatar{
-background:#667eea;
-color:white;
-padding:12px;
-border-radius:50%;
+font-family:'Nunito',sans-serif;
+background:#f4f6fb;
 }
 
 /* NAVBAR */
 
 .navbar{
+
 display:flex;
-justify-content:center;
-gap:40px;
-padding:15px;
-background:#eef2ff;
-}
+justify-content:space-between;
+align-items:center;
 
-.navbar a{
-text-decoration:none;
-color:#333;
-font-weight:600;
-}
+padding:10px 35px;
 
-/* DASHBOARD GRID */
-
-.dashboard{
-display:grid;
-grid-template-columns:2fr 1fr;
-gap:30px;
-margin-top:30px;
-}
-
-/* LEFT PANEL */
-
-.left{
-display:flex;
-flex-direction:column;
-gap:30px;
-}
-
-/* RIGHT PANEL */
-
-.right{
-display:flex;
-flex-direction:column;
-gap:30px;
-}
-
-/* ADVENTURE SECTION */
-
-.adventure-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:20px;
-}
-
-.adventure-card{
 background:white;
-padding:25px;
-border-radius:15px;
-box-shadow:0 4px 10px rgba(0,0,0,0.1);
+border-bottom:1px solid #eee;
+
 }
 
-.adventure-card button{
-margin-top:10px;
-padding:10px 18px;
+/* LEFT SIDE */
+
+.nav-left{
+
+display:flex;
+align-items:center;
+gap:25px;
+
+}
+
+/* LOGO */
+
+.logo{
+
+display:flex;
+align-items:center;
+gap:8px;
+
+font-size:20px;
+font-weight:700;
+color:#4f46e5;
+
+}
+
+.logo i{
+font-size:22px;
+}
+
+/* WELCOME */
+
+.welcome-text{
+margin:0;
+font-size:14px;
+}
+
+.user-stats{
+
+display:flex;
+gap:15px;
+margin-top:3px;
+font-size:13px;
+
+}
+
+/* STREAK */
+
+.streak i{
+color:#ff6b00;
+}
+
+/* LEVEL */
+
+.level i{
+color:#facc15;
+}
+
+/* RIGHT SIDE */
+
+.nav-right{
+
+display:flex;
+align-items:center;
+gap:15px;
+
+}
+
+/* BUTTONS */
+
+.points-btn{
+
+background:linear-gradient(135deg,#667eea,#764ba2);
 border:none;
-background:#667eea;
 color:white;
+
+padding:7px 16px;
+
 border-radius:20px;
+
 cursor:pointer;
+font-size:13px;
+
 }
 
-/* GAME SECTION */
+.challenge-btn{
 
-.game-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:20px;
+background:linear-gradient(135deg,#f7971e,#ffd200);
+border:none;
+
+padding:7px 16px;
+
+border-radius:20px;
+
+cursor:pointer;
+font-size:13px;
+
 }
 
-.game-card{
-background:linear-gradient(135deg,#4facfe,#00f2fe);
+/* LOGOUT */
+
+.logout-btn{
+
+background:linear-gradient(135deg,#ff416c,#ff4b2b);
+
 color:white;
-padding:30px;
-text-align:center;
-border-radius:15px;
+
+padding:7px 14px;
+
+border-radius:20px;
+
+text-decoration:none;
+
 }
 
-/* PROFILE CARD */
+/* DASHBOARD MENU */
 
-.profile-card{
-background:white;
-padding:25px;
-border-radius:15px;
-text-align:center;
-box-shadow:0 4px 10px rgba(0,0,0,0.1);
+.dashboard-menu{
+
+display:flex;
+
+justify-content:space-between;
+
+padding:20px 40px;
+
+gap:15px;
+
 }
 
-.avatar-big{
-font-size:45px;
-margin:20px 0;
+/* BUTTON */
+
+.menu-btn{
+
+flex:1;
+
+display:flex;
+
+align-items:center;
+justify-content:center;
+
+gap:8px;
+
+padding:10px 12px;
+
+border-radius:20px;
+
+font-size:13px;
+
+font-weight:600;
+
+color:white;
+
+text-decoration:none;
+
+transition:0.3s;
+
 }
 
-.xp-bar{
-height:10px;
-background:#ddd;
-border-radius:10px;
-margin-top:10px;
+/* ICON SIZE */
+
+.menu-btn i{
+font-size:14px;
 }
 
-.xp-fill{
-width:60%;
-height:100%;
-background:#667eea;
-border-radius:10px;
+/* GRADIENT COLORS */
+
+.progress{
+background:linear-gradient(135deg,#667eea,#764ba2);
 }
 
-/* LEADERBOARD */
-
-.leaderboard{
-background:white;
-padding:25px;
-border-radius:15px;
-box-shadow:0 4px 10px rgba(0,0,0,0.1);
+.courses{
+background:linear-gradient(135deg,#4facfe,#00f2fe);
 }
 
-.leaderboard p{
-margin:8px 0;
+.funzone{
+background:linear-gradient(135deg,#43e97b,#38f9d7);
+}
+
+.quizzes{
+background:linear-gradient(135deg,#fa709a,#fee140);
+}
+
+.settings{
+background:linear-gradient(135deg,#ff7e5f,#feb47b);
+}
+
+/* HOVER EFFECT */
+
+.menu-btn:hover{
+
+transform:translateY(-2px);
+
+box-shadow:0 6px 15px rgba(0,0,0,0.2);
+
 }
