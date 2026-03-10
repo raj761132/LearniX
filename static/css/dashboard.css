@@ -288,3 +288,350 @@ display:none;
 display:block;
 
 }
+
+/* ================= DASHBOARD LAYOUT ================= */
+
+.dashboard-layout{
+display:grid;
+grid-template-columns:2fr 1fr;
+gap:30px;
+}
+
+
+
+/* ================= ADVENTURE BOARD ================= */
+
+.adventure-main-card{
+
+background:white;
+
+border-radius:22px;
+
+overflow:hidden;
+
+box-shadow:0 25px 50px rgba(0,0,0,0.15);
+
+position:relative;
+
+animation:floatBoard 6s ease-in-out infinite;
+
+}
+
+
+/* floating animation */
+
+@keyframes floatBoard{
+
+0%{transform:translateY(0)}
+50%{transform:translateY(-8px)}
+100%{transform:translateY(0)}
+
+}
+
+
+/* decorative gradient shapes */
+
+.adventure-main-card::before{
+
+content:"";
+
+position:absolute;
+
+width:260px;
+height:260px;
+
+background:linear-gradient(135deg,#6366f1,#8b5cf6);
+
+border-radius:50%;
+
+top:-120px;
+right:-120px;
+
+opacity:0.15;
+
+}
+
+.adventure-main-card::after{
+
+content:"";
+
+position:absolute;
+
+width:200px;
+height:200px;
+
+background:linear-gradient(135deg,#06b6d4,#22d3ee);
+
+border-radius:50%;
+
+bottom:-100px;
+left:-100px;
+
+opacity:0.15;
+
+}
+
+
+
+/* ================= HEADER ================= */
+
+.section-title{
+
+background:linear-gradient(135deg,#6366f1,#22d3ee);
+
+color:white;
+
+padding:18px 25px;
+
+font-size:22px;
+
+display:flex;
+align-items:center;
+gap:10px;
+
+margin:0;
+
+}
+
+
+
+/* ================= QUEST GRID ================= */
+
+.quest-grid{
+
+padding:25px;
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:22px;
+
+}
+
+
+
+/* ================= QUEST CARD ================= */
+
+.quest-card{
+
+border-radius:18px;
+
+overflow:hidden;
+
+transition:0.35s;
+
+cursor:pointer;
+
+color:white;
+
+box-shadow:0 10px 20px rgba(0,0,0,0.15);
+
+position:relative;
+
+}
+
+
+.quest-card:hover{
+
+transform:translateY(-10px) scale(1.05);
+
+box-shadow:0 25px 45px rgba(0,0,0,0.25);
+
+}
+
+
+
+/* ================= CARD GRADIENT COLORS ================= */
+
+.math{
+background:linear-gradient(135deg,#6366f1,#8b5cf6);
+}
+
+.science{
+background:linear-gradient(135deg,#10b981,#34d399);
+}
+
+.reading{
+background:linear-gradient(135deg,#f59e0b,#fbbf24);
+}
+
+.logic{
+background:linear-gradient(135deg,#ec4899,#f472b6);
+}
+
+.coding{
+background:linear-gradient(135deg,#06b6d4,#22d3ee);
+}
+
+.geography{
+background:linear-gradient(135deg,#ef4444,#f87171);
+}
+
+
+
+/* ================= QUEST BANNER ================= */
+
+.quest-banner{
+
+height:100px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:38px;
+
+background:rgba(255,255,255,0.15);
+
+backdrop-filter:blur(6px);
+
+}
+
+
+
+/* ================= QUEST CONTENT ================= */
+
+.quest-content{
+
+padding:16px;
+
+text-align:center;
+
+}
+
+
+.quest-content h3{
+
+margin:6px 0;
+
+font-size:17px;
+
+color:white;
+
+}
+
+
+/* quote */
+
+.quote{
+
+font-size:13px;
+
+color:rgba(255,255,255,0.9);
+
+font-style:italic;
+
+margin-top:6px;
+
+}
+
+
+
+/* ================= START BUTTON ================= */
+
+.quest-btn{
+
+margin-top:12px;
+
+padding:9px 20px;
+
+border:none;
+
+border-radius:30px;
+
+color:white;
+
+font-weight:700;
+
+cursor:pointer;
+
+transition:all 0.25s ease;
+
+}
+
+
+
+/* button gradients */
+
+.math .quest-btn{
+background:linear-gradient(135deg,#4338ca,#6366f1);
+}
+
+.science .quest-btn{
+background:linear-gradient(135deg,#059669,#10b981);
+}
+
+.reading .quest-btn{
+background:linear-gradient(135deg,#d97706,#f59e0b);
+}
+
+.logic .quest-btn{
+background:linear-gradient(135deg,#db2777,#ec4899);
+}
+
+.coding .quest-btn{
+background:linear-gradient(135deg,#0891b2,#06b6d4);
+}
+
+.geography .quest-btn{
+background:linear-gradient(135deg,#dc2626,#ef4444);
+}
+
+
+
+/* button hover */
+
+.quest-btn:hover{
+
+transform:scale(1.1);
+
+box-shadow:0 8px 18px rgba(0,0,0,0.25);
+
+filter:brightness(1.1);
+
+}
+
+
+/* click effect */
+
+.quest-btn:active{
+
+transform:scale(0.95);
+
+}
+
+
+
+/* ================= RIGHT SIDE CARD ================= */
+
+.side-card{
+
+background:white;
+
+border-radius:20px;
+
+padding:25px;
+
+box-shadow:0 12px 28px rgba(0,0,0,0.12);
+
+min-height:320px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+text-align:center;
+
+color:#888;
+
+font-weight:600;
+
+}
+
+.quest-banner i{
+font-size:40px;
+opacity:0.95;
+}
