@@ -84,32 +84,87 @@ Challenges
 
 <div class="dashboard-menu">
 
-<a href="/progress" class="menu-btn progress">
+<button class="menu-btn dashboard active" onclick="showSection('dashboard')">
+<i class="fa-solid fa-house"></i>
+<span>Dashboard</span>
+</button>
+
+<button class="menu-btn progress" onclick="showSection('progress')">
 <i class="fa-solid fa-chart-line"></i>
 <span>My Progress</span>
-</a>
+</button>
 
-<a href="/courses" class="menu-btn courses">
+<button class="menu-btn courses" onclick="showSection('courses')">
 <i class="fa-solid fa-book-open"></i>
 <span>Courses</span>
-</a>
+</button>
 
-<a href="/funzone" class="menu-btn funzone">
+<button class="menu-btn funzone" onclick="showSection('funzone')">
 <i class="fa-solid fa-gamepad"></i>
 <span>Fun Zone</span>
-</a>
+</button>
 
-<a href="/quizzes" class="menu-btn quizzes">
+<button class="menu-btn quizzes" onclick="showSection('quizzes')">
 <i class="fa-solid fa-bolt"></i>
 <span>Live Quizzes</span>
-</a>
+</button>
 
-<a href="/settings" class="menu-btn settings">
+<button class="menu-btn settings" onclick="showSection('settings')">
 <i class="fa-solid fa-gear"></i>
 <span>Settings</span>
-</a>
+</button>
 
 </div>
+
+<div class="content-container">
+
+<div id="dashboard" class="tab-content active">
+{% include "dashboard_sections/dashboard.html" %}
+</div>
+
+<div id="progress" class="tab-content">
+{% include "dashboard_sections/progress.html" %}
+</div>
+
+<div id="courses" class="tab-content">
+{% include "dashboard_sections/courses.html" %}
+</div>
+
+<div id="funzone" class="tab-content">
+{% include "dashboard_sections/funzone.html" %}
+</div>
+
+<div id="quizzes" class="tab-content">
+{% include "dashboard_sections/quizzes.html" %}
+</div>
+
+<div id="settings" class="tab-content">
+{% include "dashboard_sections/settings.html" %}
+</div>
+
+</div>
+
+<script>
+
+function showSection(sectionId){
+
+// hide all sections
+document.querySelectorAll(".tab-content")
+.forEach(section => section.classList.remove("active"));
+
+// show selected section
+document.getElementById(sectionId)
+.classList.add("active");
+
+// move active button
+document.querySelectorAll(".menu-btn")
+.forEach(btn => btn.classList.remove("active"));
+
+event.currentTarget.classList.add("active");
+
+}
+
+</script>
 
 </body>
 </html>

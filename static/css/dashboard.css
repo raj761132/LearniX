@@ -1,10 +1,13 @@
+/* GLOBAL */
+
 body{
 margin:0;
 font-family:'Nunito',sans-serif;
 background:#f4f6fb;
 }
 
-/* NAVBAR */
+
+/* ================= NAVBAR ================= */
 
 .navbar{
 
@@ -47,6 +50,7 @@ color:#4f46e5;
 font-size:22px;
 }
 
+
 /* WELCOME */
 
 .welcome-text{
@@ -63,17 +67,20 @@ font-size:13px;
 
 }
 
-/* STREAK */
+
+/* STREAK ICON */
 
 .streak i{
 color:#ff6b00;
 }
 
-/* LEVEL */
+
+/* LEVEL ICON */
 
 .level i{
 color:#facc15;
 }
+
 
 /* RIGHT SIDE */
 
@@ -85,12 +92,17 @@ gap:15px;
 
 }
 
-/* BUTTONS */
+
+/* ================= TOP BUTTONS ================= */
+
+/* POINTS */
 
 .points-btn{
 
 background:linear-gradient(135deg,#667eea,#764ba2);
+
 border:none;
+
 color:white;
 
 padding:7px 16px;
@@ -98,13 +110,18 @@ padding:7px 16px;
 border-radius:20px;
 
 cursor:pointer;
+
 font-size:13px;
 
 }
 
+
+/* CHALLENGES */
+
 .challenge-btn{
 
 background:linear-gradient(135deg,#f7971e,#ffd200);
+
 border:none;
 
 padding:7px 16px;
@@ -112,9 +129,11 @@ padding:7px 16px;
 border-radius:20px;
 
 cursor:pointer;
+
 font-size:13px;
 
 }
+
 
 /* LOGOUT */
 
@@ -132,7 +151,9 @@ text-decoration:none;
 
 }
 
-/* DASHBOARD MENU */
+
+
+/* ================= DASHBOARD MENU ================= */
 
 .dashboard-menu{
 
@@ -145,6 +166,7 @@ padding:20px 40px;
 gap:15px;
 
 }
+
 
 /* BUTTON */
 
@@ -171,9 +193,14 @@ color:white;
 
 text-decoration:none;
 
-transition:0.3s;
+border:none;
+
+cursor:pointer;
+
+transition:all 0.25s ease;
 
 }
+
 
 /* ICON SIZE */
 
@@ -181,7 +208,12 @@ transition:0.3s;
 font-size:14px;
 }
 
-/* GRADIENT COLORS */
+
+/* ================= GRADIENT COLORS ================= */
+
+.dashboard{
+background:linear-gradient(135deg,#36d1dc,#5b86e5);
+}
 
 .progress{
 background:linear-gradient(135deg,#667eea,#764ba2);
@@ -203,12 +235,56 @@ background:linear-gradient(135deg,#fa709a,#fee140);
 background:linear-gradient(135deg,#ff7e5f,#feb47b);
 }
 
-/* HOVER EFFECT */
+
+
+/* ================= HOVER EFFECT ================= */
 
 .menu-btn:hover{
 
-transform:translateY(-2px);
+transform:translateY(-3px);
 
 box-shadow:0 6px 15px rgba(0,0,0,0.2);
+
+filter:brightness(1.1);
+
+}
+
+
+/* ================= ACTIVE BUTTON ================= */
+
+.menu-btn.active{
+
+transform:translateY(-3px);
+
+box-shadow:0 6px 15px rgba(0,0,0,0.25);
+
+filter:brightness(1.15);
+
+}
+
+
+/* ================= CONTENT AREA ================= */
+
+.content-container{
+
+padding:30px 40px;
+
+}
+
+
+/* HIDE SECTIONS */
+
+.tab-content{
+
+display:none;
+
+}
+
+
+/* SHOW ACTIVE */
+
+.tab-content.active{
+
+display:block;
 
 }
