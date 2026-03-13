@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <div class="dashboard-layout">
 
 <div class="adventure-main-card">
@@ -23,7 +24,9 @@ style="background-image:url('/static/images/math.jpg');">
 <div class="quest-content">
 <h3>Math Quest</h3>
 <p class="quote">“Numbers are the language of the universe.”</p>
-<button class="quest-btn">Start Mission</button>
+<button class="quest-btn" onclick="startMission('math')">
+Start Mission
+</button>
 </div>
 
 </div>
@@ -96,7 +99,7 @@ style="background-image:url('/static/images/puzzle.jpg');">
 <div class="quest-banner"
 style="background-image:url('/static/images/eng.jpg');">
 
-<i class="fa-solid fa-code"></i>
+<i class="fa-solid fa-language"></i>
 
 </div>
 
@@ -132,6 +135,28 @@ style="background-image:url('/static/images/gk.jpg');">
 
 </div>
 
+<!--- Daily Quest Model -->
+<div id="quizModal" class="quiz-modal">
+
+<div class="quiz-card">
+
+<div class="quiz-header">
+<h2><i class="fa-solid fa-bolt"></i> Daily Challenge</h2>
+<i class="fa-solid fa-xmark close-icon" onclick="closeQuiz()"></i>
+</div>
+
+<div class="quiz-progress">
+<i class="fa-solid fa-star"></i>
+<span id="questionNumber"></span>
+</div>
+
+<div id="quizContent"></div>
+
+<div id="quizMessage"></div>
+
+</div>
+
+</div>
 
 <div class="side-card">
 
@@ -141,11 +166,26 @@ style="background-image:url('/static/images/gk.jpg');">
 
 <div class="avatar">
 
+{% if level == 1 %}
+<i class="fa-solid fa-seedling"></i>
+
+{% elif level == 2 %}
+<i class="fa-solid fa-user"></i>
+
+{% elif level == 3 %}
+<i class="fa-solid fa-user-graduate"></i>
+
+{% elif level == 4 %}
 <i class="fa-solid fa-user-astronaut"></i>
+
+{% else %}
+<i class="fa-solid fa-crown"></i>
+
+{% endif %}
 
 </div>
 
-<h3 class="player-name">{{ username }}</h3>
+<h3 class="player-name">{{ name }}</h3>
 
 <span class="level-badge">
 Level {{ level }}
@@ -154,17 +194,22 @@ Level {{ level }}
 </div>
 
 
-<!-- XP BAR -->
+<!-- LEVEL BAR -->
 
-<div class="xp-section">
+<div class="level-section">
 
-<div class="xp-label">
-XP Progress
+<div class="level-label">
+<i class="fa-solid fa-layer-group"></i>
+Level {{ level }} Progress
+<span class="xp-text">
+<i class="fa-solid fa-star"></i>
+{{ xp_current }}/100
+</span>
 </div>
 
-<div class="xp-bar">
+<div class="level-bar">
 
-<div class="xp-fill" style="width:60%"></div>
+<div class="level-fill" style="width: {{ level_progress }}%;"></div>
 
 </div>
 
@@ -205,24 +250,29 @@ Class Leaderboard
 
 <ul class="leaderboard">
 
-<li>
-🥇 Rahul
-<span>520 XP</span>
-</li>
+{% for student in leaderboard %}
 
 <li>
-🥈 Asha
-<span>480 XP</span>
+
+{% if loop.index == 1 %}
+<i class="fa-solid fa-trophy"></i>
+{% elif loop.index == 2 %}
+<i class="fa-solid fa-medal"></i>
+{% elif loop.index == 3 %}
+<i class="fa-solid fa-award"></i>
+{% endif %}
+
+{{ student.name }}
+
+<span>{{ student.xp }} XP</span>
+
 </li>
 
-<li>
-🥉 Vikram
-<span>450 XP</span>
-</li>
+{% endfor %}
 
 </ul>
 
-<button class="leaderboard-btn">
+<button class="leaderboard-btn" onclick="showLeaderboard()">
 Show Full Leaderboard
 </button>
 
@@ -246,3 +296,202 @@ Live Quiz
 </div>
 
 </div>
+
+<div id="leaderboardModal" class="leaderboard-modal">
+
+<div class="leaderboard-card">
+
+<div class="leaderboard-header">
+<h3><i class="fa-solid fa-trophy"></i> Class Leaderboard</h3>
+<i class="fa-solid fa-xmark close-icon" onclick="closeLeaderboard()"></i>
+</div>
+
+<div id="leaderboardGrid" class="leaderboard-grid"></div>
+
+</div>
+
+</div>
+
+<script>
+
+let questions = []
+let currentQuestion = 0
+let currentSubject = ""
+
+async function startMission(subject){
+
+currentSubject = subject
+
+let res = await fetch("/get-questions/" + subject)
+let data = await res.json()
+
+/* DAILY QUEST LOCK */
+
+if(data.completed){
+
+alert("You already completed today's challenge!")
+
+return
+
+}
+
+questions = data.questions
+currentQuestion = 0
+
+document.getElementById("quizModal").style.display = "flex"
+
+showQuestion()
+
+}
+
+function showQuestion(){
+
+let q = questions[currentQuestion]
+
+document.getElementById("questionNumber").innerHTML =
+`Question ${currentQuestion+1} / ${questions.length}`
+
+let html = `<p class="quiz-question">${q.question}</p>`
+
+q.options.forEach(opt => {
+
+html += `<button class="quiz-option"
+onclick="checkAnswer(this,'${opt}','${q.answer}')">
+${opt}
+</button>`
+
+})
+
+document.getElementById("quizContent").innerHTML = html
+document.getElementById("quizMessage").innerHTML=""
+
+}
+
+function checkAnswer(button, selected, answer){
+
+let buttons = document.querySelectorAll(".quiz-option")
+
+buttons.forEach(btn => btn.disabled = true)
+
+if(selected === answer){
+
+button.classList.add("correct")
+
+fetch("/add-xp",{
+method:"POST"
+})
+.then(res=>res.json())
+.then(data=>{
+document.getElementById("xpValue").innerText = data.xp
+})
+
+document.getElementById("quizMessage").innerHTML =
+"<i class='fa-solid fa-circle-check'></i> Correct! +10 XP"
+
+}
+else{
+
+button.classList.add("wrong")
+
+buttons.forEach(btn=>{
+if(btn.innerText === answer){
+btn.classList.add("correct")
+}
+})
+
+document.getElementById("quizMessage").innerHTML =
+"<i class='fa-solid fa-circle-xmark'></i> Wrong!"
+
+}
+
+setTimeout(()=>{
+
+currentQuestion++
+
+if(currentQuestion < questions.length){
+
+showQuestion()
+
+}
+else{
+
+/* MARK QUEST COMPLETE */
+
+fetch("/complete-quest",{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+subject: currentSubject
+})
+})
+
+document.getElementById("quizContent").innerHTML =
+"<h2><i class='fa-solid fa-trophy'></i> Mission Complete!</h2>"
+
+document.getElementById("quizMessage").innerHTML =
+"<p>Come back tomorrow for a new challenge!</p>"
+
+}
+
+},1200)
+
+}
+
+function closeQuiz(){
+
+document.getElementById("quizModal").style.display = "none"
+
+}
+let newXP = data.xp
+let newLevel = Math.floor(newXP / 100) + 1
+
+if(newLevel > currentLevel){
+
+alert("🎉 Level Up! You reached Level " + newLevel)
+
+}
+
+async function showLeaderboard(){
+
+let res = await fetch("/get-leaderboard")
+let data = await res.json()
+
+let html = ""
+
+data.students.forEach((student,index)=>{
+
+let rankClass = ""
+
+if(index==0) rankClass="rank1"
+else if(index==1) rankClass="rank2"
+else if(index==2) rankClass="rank3"
+
+html += `
+<div class="leader-card ${rankClass}">
+<span class="rank-number">
+${index+1}
+</span>
+
+<span>${student.name}</span>
+
+<span class="xp">
+<i class="fa-solid fa-star"></i> ${student.xp}
+</span>
+</div>
+`
+
+})
+
+document.getElementById("leaderboardGrid").innerHTML = html
+
+document.getElementById("leaderboardModal").style.display="flex"
+
+}
+
+function closeLeaderboard(){
+document.getElementById("leaderboardModal").style.display="none"
+}
+
+</script>

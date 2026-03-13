@@ -1,6 +1,9 @@
 from flask import Flask, render_template, redirect, request, session
 from flask_sqlalchemy import SQLAlchemy
 from datetime import date
+import json
+import random
+from werkzeug.security import generate_password_hash
 
 app = Flask(__name__)
 app.secret_key = "supersecretkey"
@@ -18,6 +21,8 @@ class User(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
 
+    name = db.Column(db.String(100), nullable=False)
+
     username = db.Column(db.String(100), unique=True, nullable=False)
 
     password = db.Column(db.String(100), nullable=False)
@@ -31,7 +36,24 @@ class User(db.Model):
     streak = db.Column(db.Integer, default=0)
 
     last_login = db.Column(db.Date)
+    
+class DailyQuest(db.Model):
 
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, nullable=False)
+    subject = db.Column(db.String(50), nullable=False)
+    date = db.Column(db.Date, nullable=False)
+    
+# ----------------- LOAD QUESTIONS -----------------
+
+def load_questions(subject):
+
+    with open(f"questions/{subject}.json", "r", encoding="utf-8") as f:
+        questions = json.load(f)
+
+    random.shuffle(questions)
+
+    return questions[:5]
 
 # ----------------- ROUTES -----------------
 
@@ -117,18 +139,27 @@ def student_dashboard():
     if session.get("role") != "student":
         return redirect("/login")
 
-    user = User.query.get(session["user_id"])
+    user = db.session.get(User, session["user_id"])
 
-    # LEVEL CALCULATION
     level = user.xp // 100 + 1
+    xp_current = user.xp % 100
+    level_progress = (xp_current / 100) * 100
+
+    # Fetch top 3 students
+    leaderboard = User.query.filter_by(role="student")\
+        .order_by(User.xp.desc())\
+        .limit(3).all()
 
     return render_template(
         "student_dashboard.html",
-        username=user.username,
+        name=user.name,
         xp=user.xp,
         coins=user.coins,
         streak=user.streak,
-        level=level
+        level=level,
+        xp_current=xp_current,
+        level_progress=level_progress,
+        leaderboard=leaderboard
     )
 
 
@@ -175,38 +206,81 @@ def quizzes():
 def settings():
     return "Settings Page Coming Soon"
 
+#-----------------GET QUESTIONS-----------------------
 
-# ----------------- CREATE DEMO USERS -----------------
+@app.route("/get-questions/<subject>")
+def get_questions(subject):
 
-@app.route("/create-users")
-def create_users():
+    if session.get("role") != "student":
+        return {"error":"not logged in"}
 
-    user1 = User(
-        username="student1",
-        password="1234",
-        role="student",
-        xp=240,
-        coins=120,
-        streak=0
+    user_id = session["user_id"]
+
+    today = date.today()
+
+    quest_done = DailyQuest.query.filter_by(
+        user_id=user_id,
+        subject=subject,
+        date=today
+    ).first()
+
+    if quest_done:
+        return {"completed":True}
+
+    questions = load_questions(subject)
+
+    return {"questions":questions}
+
+@app.route("/complete-quest", methods=["POST"])
+def complete_quest():
+
+    user_id = session["user_id"]
+
+    subject = request.json["subject"]
+
+    today = date.today()
+
+    quest = DailyQuest(
+        user_id=user_id,
+        subject=subject,
+        date=today
     )
 
-    user2 = User(
-        username="teacher1",
-        password="1234",
-        role="teacher"
-    )
-
-    user3 = User(
-        username="admin",
-        password="admin",
-        role="admin"
-    )
-
-    db.session.add_all([user1, user2, user3])
+    db.session.add(quest)
     db.session.commit()
 
-    return "Dummy users created!"
+    return {"success":True}
 
+@app.route("/add-xp", methods=["POST"])
+def add_xp():
+
+    if "user_id" not in session:
+        return {"success": False}
+
+    user = db.session.get(User, session["user_id"])
+
+    user.xp += 5
+
+    db.session.commit()
+
+    return {"success": True, "xp": user.xp}
+
+@app.route("/get-leaderboard")
+def get_leaderboard():
+
+    students = User.query.filter_by(role="student")\
+        .order_by(User.xp.desc())\
+        .all()
+
+    data = []
+
+    for s in students:
+        data.append({
+            "name": s.name,
+            "xp": s.xp
+        })
+
+    return {"students": data}
 
 # ----------------- RUN APP -----------------
 

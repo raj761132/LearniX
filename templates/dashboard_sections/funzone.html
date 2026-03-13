@@ -1,0 +1,95 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='css/funzone.css') }}">
+<div class="funzone-container">
+
+<h2 class="funzone-title">
+<i class="fa-solid fa-gamepad"></i>
+Fun Zone Arcade
+</h2>
+
+<div class="games-grid">
+
+<div class="game-card" onclick="startGame('rapid')">
+<i class="fa-solid fa-bolt"></i>
+<span>Rapid Fire</span>
+</div>
+
+<div class="game-card" onclick="startGame('math')">
+<i class="fa-solid fa-calculator"></i>
+<span>Lightning Math</span>
+</div>
+
+<div class="game-card" onclick="startGame('memory')">
+<i class="fa-solid fa-brain"></i>
+<span>Memory Match</span>
+</div>
+
+<div class="game-card" onclick="startGame('pattern')">
+<i class="fa-solid fa-puzzle-piece"></i>
+<span>Pattern Master</span>
+</div>
+
+<div class="game-card" onclick="startGame('word')">
+<i class="fa-solid fa-font"></i>
+<span>Word Builder</span>
+</div>
+
+<div class="game-card" onclick="startGame('sentence')">
+<i class="fa-solid fa-pen"></i>
+<span>Sentence Builder</span>
+</div>
+
+<div class="game-card" onclick="startGame('target')">
+<i class="fa-solid fa-bullseye"></i>
+<span>Target Math</span>
+</div>
+
+<div class="game-card" onclick="startGame('truefalse')">
+<i class="fa-solid fa-circle-question"></i>
+<span>True or False</span>
+</div>
+
+<div class="game-card" onclick="startGame('picture')">
+<i class="fa-solid fa-image"></i>
+<span>Picture Quiz</span>
+</div>
+
+<div class="game-card" onclick="startGame('geo')">
+<i class="fa-solid fa-globe"></i>
+<span>World Explorer</span>
+</div>
+
+<div class="game-card" onclick="startGame('ladder')">
+<i class="fa-solid fa-stairs"></i>
+<span>Number Ladder</span>
+</div>
+
+<div class="game-card" onclick="startGame('treasure')">
+<i class="fa-solid fa-gem"></i>
+<span>Treasure Hunt</span>
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+function startGame(game){
+
+document.getElementById("gameModal").style.display="flex"
+
+if(game=="rapid"){
+document.getElementById("gameTitle").innerText="Rapid Fire Quiz"
+}
+
+if(game=="memory"){
+document.getElementById("gameTitle").innerText="Memory Match"
+}
+
+if(game=="word"){
+document.getElementById("gameTitle").innerText="Word Builder"
+}
+
+}
+
+</script>

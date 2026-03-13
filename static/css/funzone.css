@@ -1,0 +1,155 @@
+/* PAGE */
+
+.funzone-container{
+padding:30px;
+max-width:1300px;
+margin:auto;
+height:calc(100vh - 60px);
+display:flex;
+flex-direction:column;
+justify-content: flex-start;
+}
+
+
+/* TITLE */
+
+.funzone-title{
+  text-align:center;
+  font-size:36px;
+  margin:5px 0 20px 0;
+  font-weight:900;
+  font-family:Arial Black, sans-serif;
+  background: linear-gradient(90deg,#00c6ff,#0072ff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.funzone-container{
+position:relative;
+z-index:2;
+}
+
+
+/* GRID THAT FILLS SCREEN */
+
+.games-grid{
+flex:1;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+grid-template-rows:repeat(4,1fr);
+gap:22px;
+}
+
+
+/* GAME CARD */
+
+.game-card{
+border-radius:20px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+cursor:pointer;
+color:white;
+font-weight:600;
+font-size:18px;
+transition:0.25s;
+box-shadow:0 12px 22px rgba(0,0,0,0.20);
+text-align:center;
+}
+
+
+/* ICON */
+
+.game-card i{
+font-size:42px;
+margin-bottom:12px;
+}
+
+
+/* HOVER */
+
+.game-card:hover{
+transform:translateY(-8px) scale(1.05);
+box-shadow:0 18px 35px rgba(0,0,0,0.28);
+}
+
+
+/* GRADIENT COLORS */
+
+.game-card:nth-child(1){
+background:linear-gradient(135deg,#ff7a18,#ffb347);
+}
+
+.game-card:nth-child(2){
+background:linear-gradient(135deg,#6a11cb,#2575fc);
+}
+
+.game-card:nth-child(3){
+background:linear-gradient(135deg,#00c9a7,#00b894);
+}
+
+.game-card:nth-child(4){
+background:linear-gradient(135deg,#ff4e50,#f9d423);
+}
+
+.game-card:nth-child(5){
+background:linear-gradient(135deg,#ff6a00,#ee0979);
+}
+
+.game-card:nth-child(6){
+background:linear-gradient(135deg,#1fa2ff,#12d8fa);
+}
+
+.game-card:nth-child(7){
+background:linear-gradient(135deg,#43e97b,#38f9d7);
+}
+
+.game-card:nth-child(8){
+background:linear-gradient(135deg,#fa709a,#fee140);
+}
+
+.game-card:nth-child(9){
+background:linear-gradient(135deg,#30cfd0,#330867);
+}
+
+.game-card:nth-child(10){
+background:linear-gradient(135deg,#f7971e,#ffd200);
+}
+
+.game-card:nth-child(11){
+background:linear-gradient(135deg,#ff5858,#f09819);
+}
+
+.game-card:nth-child(12){
+background:linear-gradient(135deg,#36d1dc,#5b86e5);
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width:900px){
+
+.games-grid{
+grid-template-columns:repeat(2,1fr);
+grid-template-rows:auto;
+}
+
+.game-card{
+height:160px;
+}
+
+}
+
+@media (max-width:500px){
+
+.games-grid{
+grid-template-columns:1fr;
+}
+
+.game-card{
+height:150px;
+}
+
+}
+
