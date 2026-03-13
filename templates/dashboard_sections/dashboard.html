@@ -135,9 +135,113 @@ style="background-image:url('/static/images/gk.jpg');">
 
 <div class="side-card">
 
-<h3>Coming Soon</h3>
+<!-- PLAYER PROFILE -->
 
-<p>You can add leaderboard, XP progress or achievements here later.</p>
+<div class="player-profile">
+
+<div class="avatar">
+
+<i class="fa-solid fa-user-astronaut"></i>
+
+</div>
+
+<h3 class="player-name">{{ username }}</h3>
+
+<span class="level-badge">
+Level {{ level }}
+</span>
+
+</div>
+
+
+<!-- XP BAR -->
+
+<div class="xp-section">
+
+<div class="xp-label">
+XP Progress
+</div>
+
+<div class="xp-bar">
+
+<div class="xp-fill" style="width:60%"></div>
+
+</div>
+
+</div>
+
+
+<!-- STATS -->
+
+<div class="player-stats">
+
+<div class="stat">
+<i class="fa-solid fa-star"></i>
+<span>{{ xp }} XP</span>
+</div>
+
+<div class="stat">
+<i class="fa-solid fa-coins"></i>
+<span>{{ coins }} Points</span>
+</div>
+
+<div class="stat">
+<i class="fa-solid fa-calendar-check"></i>
+<span>{{ streak }} Days</span>
+</div>
+
+</div>
+
+
+
+<!-- LEADERBOARD -->
+
+<div class="leaderboard-section">
+
+<h4>
+<i class="fa-solid fa-trophy"></i>
+Class Leaderboard
+</h4>
+
+<ul class="leaderboard">
+
+<li>
+🥇 Rahul
+<span>520 XP</span>
+</li>
+
+<li>
+🥈 Asha
+<span>480 XP</span>
+</li>
+
+<li>
+🥉 Vikram
+<span>450 XP</span>
+</li>
+
+</ul>
+
+<button class="leaderboard-btn">
+Show Full Leaderboard
+</button>
+
+</div>
+
+
+<!-- FUTURE LIVE QUIZ -->
+
+<div class="quiz-section">
+
+<h4>
+<i class="fa-solid fa-bolt"></i>
+Live Quiz
+</h4>
+
+<p>Live quizzes will appear here.</p>
+
+</div>
+
 
 </div>
 
