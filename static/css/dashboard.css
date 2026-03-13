@@ -474,17 +474,42 @@ background:linear-gradient(135deg,#ef4444,#f87171);
 
 .quest-banner{
 
-height:100px;
+height:110px;
 
 display:flex;
 align-items:center;
 justify-content:center;
 
-font-size:38px;
+font-size:36px;
+color:white;
 
-background:rgba(255,255,255,0.15);
+background-size:85%;
+background-position:center;
 
-backdrop-filter:blur(6px);
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.quest-banner::before{
+
+content:"";
+
+position:absolute;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+background:linear-gradient(
+to bottom,
+rgba(0,0,0,0.35),
+rgba(0,0,0,0.55)
+);
 
 }
 
@@ -632,6 +657,13 @@ font-weight:600;
 }
 
 .quest-banner i{
-font-size:40px;
-opacity:0.95;
+
+position:relative;
+
+z-index:2;
+
+font-size:34px;
+
+text-shadow:0 3px 8px rgba(0,0,0,0.6);
+
 }
