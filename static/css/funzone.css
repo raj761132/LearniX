@@ -18,9 +18,11 @@ justify-content: flex-start;
   font-size:36px;
   margin:5px 0 20px 0;
   font-weight:900;
-  font-family:Arial Black, sans-serif;
+  font-family:"Arial Black",Arial, sans-serif;
   background: linear-gradient(90deg,#00c6ff,#0072ff);
+  background-clip: text;
   -webkit-background-clip:text;
+  color: transparent;
   -webkit-text-fill-color:transparent;
 }
 
@@ -151,5 +153,171 @@ grid-template-columns:1fr;
 height:150px;
 }
 
+}
+
+.game-modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+
+.game-window{
+background:white;
+width:700px;
+max-width:90%;
+border-radius:10px;
+padding:20px;
+}
+
+.game-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:10px;
+}
+
+/* GAME CARD */
+
+.rapid-box{
+background:linear-gradient(135deg,#6a11cb,#2575fc);
+padding:30px;
+border-radius:18px;
+color:white;
+text-align:center;
+position:relative;
+overflow:hidden;
+box-shadow:0 12px 30px rgba(0,0,0,0.35);
+}
+
+/* FLOATING ICONS */
+
+.rapid-box::before{
+content:"\f135";
+font-family:"Font Awesome 6 Free";
+font-weight:900;
+position:absolute;
+font-size:60px;
+opacity:0.15;
+top:10px;
+left:15px;
+animation:floatIcon 5s infinite ease-in-out;
+}
+
+.rapid-box::after{
+content:"\f005";
+font-family:"Font Awesome 6 Free";
+font-weight:900;
+position:absolute;
+font-size:55px;
+opacity:0.15;
+bottom:10px;
+right:15px;
+animation:floatIcon 6s infinite ease-in-out;
+}
+
+/* HEADER */
+
+.rapid-header{
+display:flex;
+justify-content:space-between;
+font-size:18px;
+margin-bottom:20px;
+}
+
+.score i{
+color:gold;
+}
+
+.timer i{
+color:#ff4d4d;
+}
+
+/* QUESTION */
+
+.rapid-question{
+font-size:42px;
+margin:25px 0;
+animation:pop 0.3s ease;
+}
+
+/* INPUT */
+
+.rapid-input{
+padding:12px;
+font-size:20px;
+width:120px;
+border-radius:10px;
+border:none;
+text-align:center;
+margin-bottom:15px;
+}
+
+/* BUTTON */
+
+.rapid-btn{
+background:linear-gradient(90deg,#ff9966,#ff5e62);
+border:none;
+padding:12px 22px;
+border-radius:10px;
+color:white;
+font-weight:bold;
+cursor:pointer;
+transition:0.2s;
+}
+
+.rapid-btn:hover{
+transform:scale(1.08);
+}
+
+/* FEEDBACK */
+
+.correct{
+color:#2ecc71;
+}
+
+.wrong{
+color:#ff4d4d;
+}
+
+/* SUCCESS SCREEN */
+
+.success-screen{
+background:linear-gradient(135deg,#ff7e5f,#feb47b);
+}
+
+.success-icons i{
+color:gold;
+font-size:26px;
+margin:0 5px;
+animation:floatIcon 3s infinite;
+}
+
+.complete-title{
+margin-top:10px;
+font-size:28px;
+}
+
+.points-msg{
+margin:10px 0 20px;
+}
+
+/* ANIMATIONS */
+
+@keyframes floatIcon{
+0%{transform:translateY(0)}
+50%{transform:translateY(-8px)}
+100%{transform:translateY(0)}
+}
+
+@keyframes pop{
+0%{transform:scale(0.8);opacity:0}
+100%{transform:scale(1);opacity:1}
 }
 

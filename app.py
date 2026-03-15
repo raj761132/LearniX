@@ -44,6 +44,16 @@ class DailyQuest(db.Model):
     subject = db.Column(db.String(50), nullable=False)
     date = db.Column(db.Date, nullable=False)
     
+class GamePlayed(db.Model):
+
+    id = db.Column(db.Integer, primary_key=True)
+
+    user_id = db.Column(db.Integer, nullable=False)
+
+    game = db.Column(db.String(50), nullable=False)
+
+    date = db.Column(db.Date, nullable=False)
+    
 # ----------------- LOAD QUESTIONS -----------------
 
 def load_questions(subject):
@@ -281,6 +291,57 @@ def get_leaderboard():
         })
 
     return {"students": data}
+
+@app.route("/get-rapid-questions")
+def get_rapid_questions():
+
+    if session.get("role") != "student":
+        return {"error": "not logged in"}
+
+    with open("questions/rapid_fire.json", "r", encoding="utf-8") as f:
+        questions = json.load(f)
+
+    # shuffle questions
+    random.shuffle(questions)
+
+    # pick only 5
+    selected = questions[:5]
+
+    return {"questions": selected}
+
+@app.route("/add-points", methods=["POST"])
+def add_points():
+
+    if "user_id" not in session:
+        return {"success": False}
+
+    user_id = session["user_id"]
+    game = request.json["game"]
+    today = date.today()
+
+    played = GamePlayed.query.filter_by(
+        user_id=user_id,
+        game=game,
+        date=today
+    ).first()
+
+    if played:
+        return {"success": False, "message": "Already played today"}
+
+    user = db.session.get(User, user_id)
+
+    user.coins += 20
+
+    play = GamePlayed(
+        user_id=user_id,
+        game=game,
+        date=today
+    )
+
+    db.session.add(play)
+    db.session.commit()
+
+    return {"success": True, "coins": user.coins}
 
 # ----------------- RUN APP -----------------
 

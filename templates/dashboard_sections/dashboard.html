@@ -227,7 +227,7 @@ Level {{ level }} Progress
 
 <div class="stat">
 <i class="fa-solid fa-coins"></i>
-<span>{{ coins }} Points</span>
+<span id="coinValue">{{ coins }} Points</span>
 </div>
 
 <div class="stat">
@@ -386,7 +386,7 @@ document.getElementById("xpValue").innerText = data.xp
 })
 
 document.getElementById("quizMessage").innerHTML =
-"<i class='fa-solid fa-circle-check'></i> Correct! +10 XP"
+"<i class='fa-solid fa-circle-check'></i> Correct! +5 XP"
 
 }
 else{

@@ -33,7 +33,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 
 <div class="welcome">
 
-<p class="welcome-text">Welcome, <b>{{ username }}</b></p>
+<p class="welcome-text">Welcome, <b>{{ name }}</b></p>
 
 <div class="user-stats">
 
@@ -59,27 +59,20 @@ Level {{ level }}
 <div class="nav-right">
 
 <button class="points-btn">
-
-<i class="fa-solid fa-trophy"></i>
-{{ xp }} Points
-
+<i class="fa-solid fa-coins"></i>
+{{ xp }} XP
 </button>
 
 <button class="challenge-btn">
-
 <i class="fa-solid fa-bolt"></i>
-Challenges
-
+{{ coins }} Points
 </button>
 
 <a href="/logout" class="logout-btn">
-
 <i class="fa-solid fa-right-from-bracket"></i>
-
 </a>
 
 </div>
-
 </div>
 
 <div class="dashboard-menu">
