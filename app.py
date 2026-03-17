@@ -2,39 +2,29 @@ from flask import Flask, render_template, redirect, request, session
 from flask_sqlalchemy import SQLAlchemy
 from datetime import date
 import json
+import os
 import random
 from werkzeug.security import generate_password_hash
 
 app = Flask(__name__)
 app.secret_key = "supersecretkey"
 
-# DATABASE CONFIG
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-
 # ----------------- MODELS -----------------
 
 class User(db.Model):
-
     id = db.Column(db.Integer, primary_key=True)
-
     name = db.Column(db.String(100), nullable=False)
-
     username = db.Column(db.String(100), unique=True, nullable=False)
-
     password = db.Column(db.String(100), nullable=False)
-
     role = db.Column(db.String(20), nullable=False)
-
     xp = db.Column(db.Integer, default=0)
-
     coins = db.Column(db.Integer, default=0)
-
     streak = db.Column(db.Integer, default=0)
-
     last_login = db.Column(db.Date)
     
 class DailyQuest(db.Model):
@@ -45,14 +35,23 @@ class DailyQuest(db.Model):
     date = db.Column(db.Date, nullable=False)
     
 class GamePlayed(db.Model):
-
     id = db.Column(db.Integer, primary_key=True)
-
     user_id = db.Column(db.Integer, nullable=False)
-
     game = db.Column(db.String(50), nullable=False)
-
     date = db.Column(db.Date, nullable=False)
+    
+class StoreItem(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    price = db.Column(db.Integer, nullable=False)
+    description = db.Column(db.String(200))
+    one_time = db.Column(db.Boolean, default=True) 
+    
+class Purchase(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, nullable=False)
+    item_id = db.Column(db.Integer, nullable=False)
+    date = db.Column(db.Date)
     
 # ----------------- LOAD QUESTIONS -----------------
 
@@ -67,10 +66,13 @@ def load_questions(subject):
 
 # ----------------- ROUTES -----------------
 
+@app.route("/debug-store")
+def debug_store():
+    return str(StoreItem.query.count())
+
 @app.route("/")
 def home():
     return render_template("home.html")
-
 
 # ----------------- LOGIN -----------------
 
@@ -159,6 +161,10 @@ def student_dashboard():
     leaderboard = User.query.filter_by(role="student")\
         .order_by(User.xp.desc())\
         .limit(3).all()
+        
+    items = StoreItem.query.all()
+    purchases = Purchase.query.filter_by(user_id=user.id).all()
+    purchased_ids = [p.item_id for p in purchases]
 
     return render_template(
         "student_dashboard.html",
@@ -169,7 +175,9 @@ def student_dashboard():
         level=level,
         xp_current=xp_current,
         level_progress=level_progress,
-        leaderboard=leaderboard
+        leaderboard=leaderboard,
+        items=items,
+        purchased_ids=purchased_ids
     )
 
 
@@ -193,30 +201,6 @@ def admin():
         return redirect("/login")
 
     return "Admin Panel"
-
-#----------------Navbar Button Section----------------
-
-@app.route("/progress")
-def progress():
-    return "Progress Page Coming Soon"
-
-@app.route("/courses")
-def courses():
-    return "Courses Page Coming Soon"
-
-@app.route("/funzone")
-def funzone():
-    return "Fun Zone Coming Soon"
-
-@app.route("/quizzes")
-def quizzes():
-    return "Live Quizzes Coming Soon"
-
-@app.route("/settings")
-def settings():
-    return "Settings Page Coming Soon"
-
-#-----------------GET QUESTIONS-----------------------
 
 @app.route("/get-questions/<subject>")
 def get_questions(subject):
@@ -343,6 +327,68 @@ def add_points():
 
     return {"success": True, "coins": user.coins}
 
+@app.route("/buy-item", methods=["POST"])
+def buy_item():
+
+    user_id = session["user_id"]
+    item_id = request.json["item_id"]
+
+    user = db.session.get(User, user_id)
+    item = db.session.get(StoreItem, item_id)
+
+    if user.coins < item.price:
+        return {"success": False, "message": "Not enough coins"}
+
+    if item.one_time:
+        purchased = Purchase.query.filter_by(
+            user_id=user_id,
+            item_id=item_id
+        ).first()
+
+        if purchased:
+            return {"success": False, "message": "Already purchased"}
+
+    user.coins -= item.price
+
+    purchase = Purchase(
+        user_id=user_id,
+        item_id=item_id,
+        date=date.today()
+    )
+
+    db.session.add(purchase)
+    db.session.commit()
+
+    return {"success": True, "coins": user.coins}
+
+@app.route("/store")
+def store():
+
+    if session.get("role") != "student":
+        return redirect("/login")
+
+    user_id = session.get("user_id")
+
+    user = db.session.get(User, user_id)
+
+    if not user:
+        session.clear()
+        return redirect("/login")
+
+    items = StoreItem.query.all()
+
+    purchases = Purchase.query.filter_by(user_id=user_id).all()
+
+    purchased_ids = [p.item_id for p in purchases]
+
+    print("DEBUG ITEMS:", len(items))   # 👈 ADD THIS
+
+    return render_template(
+        "dashboard_sections/store.html",
+        items=items,
+        purchased_ids=purchased_ids,
+        coins=user.coins
+    )
 # ----------------- RUN APP -----------------
 
 if __name__ == "__main__":

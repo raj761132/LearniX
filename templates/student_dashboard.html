@@ -87,9 +87,9 @@ Level {{ level }}
 <span>My Progress</span>
 </button>
 
-<button class="menu-btn courses" onclick="showSection('courses')">
-<i class="fa-solid fa-book-open"></i>
-<span>Courses</span>
+<button class="menu-btn courses" onclick="showSection('store')">
+<i class="fa-solid fa-shopping-cart"></i>
+<span>Store</span>
 </button>
 
 <button class="menu-btn funzone" onclick="showSection('funzone')">
@@ -119,8 +119,8 @@ Level {{ level }}
 {% include "dashboard_sections/progress.html" %}
 </div>
 
-<div id="courses" class="tab-content">
-{% include "dashboard_sections/courses.html" %}
+<div id="store" class="tab-content">
+{% include "dashboard_sections/store.html" %}
 </div>
 
 <div id="funzone" class="tab-content">

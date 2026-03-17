@@ -1,0 +1,199 @@
+.store-container {
+    padding: 20px;
+}
+
+.store-title {
+    font-size: 26px;
+    margin-bottom: 15px;
+}
+
+.coins-bar {
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: gold;
+}
+
+/* GRID */
+.store-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 20px;
+}
+
+/* CARD BASE */
+.store-card {
+    position: relative;
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    background: linear-gradient(135deg, #1e1e2f, #2a2a40);
+    transition: 0.3s ease;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.store-card {
+    transition: 0.3s ease;
+}
+
+.store-card:hover {
+    transform: translateY(-10px) scale(1.05);
+    filter: brightness(1.15);
+}
+
+/* HOVER EFFECT 🔥 */
+.store-card:hover {
+    transform: translateY(-10px) scale(1.05);
+}
+
+/* GLOW BACKGROUND */
+.card-glow {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.08), transparent);
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.store-card:hover .card-glow {
+    opacity: 1;
+}
+
+/* TEXT */
+.item-name {
+    font-weight: bold;
+}
+
+.item-desc {
+    color: rgba(255,255,255,0.9);
+}
+
+/* override for legendary */
+.legendary .item-desc {
+    color: #222;
+}
+
+.common .item-desc {
+    color: #444;
+}
+
+/* PRICE */
+.price {
+    color: gold;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+/* BUTTONS */
+.buy-btn {
+    background: linear-gradient(135deg, #ff01fb, #a2ff00);
+    border: none;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.buy-btn:hover {
+    transform: scale(1.1);
+}
+
+.purchased-btn {
+    background: #555;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 10px;
+    color: #aaa;
+}
+
+/* RARITY TAG */
+.rarity-tag {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 8px;
+    background: rgba(0,0,0,0.5);
+}
+
+/* RARITY STYLES 🔥 */
+
+/* COMMON (light gray, not black) */
+.common {
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    border: 2px solid #bbb;
+    color: #222;
+}
+
+/* RARE 🔵 (bright blue) */
+.rare {
+    background: linear-gradient(135deg, #2193b0, #6dd5ed);
+    border: 2px solid #2196f3;
+    box-shadow: 0 0 15px rgba(33,150,243,0.6);
+    color: #fff;
+}
+
+/* EPIC 🟣 (vibrant purple) */
+.epic {
+    background: linear-gradient(135deg, #8e2de2, #4a00e0);
+    border: 2px solid #9c27b0;
+    box-shadow: 0 0 20px rgba(156,39,176,0.7);
+    color: #fff;
+}
+
+/* LEGENDARY 🟡 */
+.legendary {
+    background: linear-gradient(135deg, #f7971e, #ffd200);
+    color: black;
+    border: 2px solid gold;
+    box-shadow: 0 0 25px gold;
+    animation: glow 1.5s infinite alternate;
+}
+
+/* HEADER */
+.store-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -10px; /* 🔥 reduces gap from navbar */
+    margin-bottom: 20px;
+}
+
+/* TITLE */
+.store-title {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+/* COIN BOX 💎 */
+.store-balance {
+    background: linear-gradient(135deg, #1f1f2e, #2c2c44);
+    padding: 10px 18px;
+    border-radius: 12px;
+    font-size: 18px;
+    color: gold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 0 15px rgba(255,215,0,0.3);
+}
+
+.coin-label {
+    color: #ccc;
+    font-size: 14px;
+}
+
+.store-container {
+    padding: 10px 20px 20px 20px; /* less top gap */
+}
+
+@keyframes glow {
+    from { box-shadow: 0 0 10px gold; }
+    to { box-shadow: 0 0 30px gold; }
+}

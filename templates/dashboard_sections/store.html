@@ -1,0 +1,116 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='css/store.css') }}">
+
+<div class="store-header">
+
+    <div class="store-title">
+        <i class="fa-solid fa-shopping-cart"></i> <span> Store Items </span>
+    </div>
+
+    <div class="store-balance">
+        <i class="fa-solid fa-coins"></i>
+        <span id="coinValue">{{ coins }}</span>
+        <span class="coin-label">Coins</span>
+    </div>
+
+</div>
+
+<div class="store-grid">
+
+{% for item in items %}
+
+<div class="store-card 
+{% if item.price >= 5000 %} legendary
+{% elif item.price >= 3500 %} epic
+{% elif item.price >= 2000 %} rare
+{% else %} common
+{% endif %}
+">
+
+<div class="card-glow"></div>
+
+<span class="rarity-tag">
+{% if item.price >= 5000 %}
+Legendary
+{% elif item.price >= 3500 %}
+Epic
+{% elif item.price >= 2000 %}
+Rare
+{% else %}
+Common
+{% endif %}
+</span>
+
+<h3 class="item-name">{{ item.name }}</h3>
+
+<p class="item-desc">{{ item.description }}</p>
+
+<div class="price">
+<i class="fa-solid fa-coins"></i>
+{{ item.price }}
+</div>
+
+{% if item.id in purchased_ids and item.one_time %}
+
+<button class="purchased-btn" disabled>
+Owned
+</button>
+
+{% else %}
+
+<button class="buy-btn" onclick="buyItem({{ item.id }}, {{ item.price }})">
+Buy
+</button>
+
+{% endif %}
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+
+<script>
+
+function buyItem(itemId, price){
+
+let coins = parseInt(document.getElementById("coinValue").innerText)
+
+if(coins < price){
+alert("Not enough coins!")
+return
+}
+
+fetch("/buy-item",{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+item_id: itemId
+})
+})
+.then(res=>res.json())
+.then(data=>{
+
+if(data.success){
+
+document.getElementById("coinValue").innerText = data.coins
+
+alert("🎉 Item purchased!")
+
+location.reload()
+
+}else{
+
+alert(data.message)
+
+}
+
+})
+
+}
+
+</script>
