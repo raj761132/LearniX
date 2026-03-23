@@ -66,10 +66,6 @@ def load_questions(subject):
 
 # ----------------- ROUTES -----------------
 
-@app.route("/debug-store")
-def debug_store():
-    return str(StoreItem.query.count())
-
 @app.route("/")
 def home():
     return render_template("home.html")
@@ -83,12 +79,10 @@ def login():
 
         username = request.form["username"]
         password = request.form["password"]
-        role = request.form["role"]
 
         user = User.query.filter_by(
             username=username,
             password=password,
-            role=role
         ).first()
 
         if user:
@@ -112,20 +106,12 @@ def login():
                 # difference == 0 → same day login → no change
 
             user.last_login = today
-
             db.session.commit()
 
             session["user_id"] = user.id
-            session["role"] = user.role
-
-            if role == "student":
-                return redirect("/student/dashboard")
-
-            elif role == "teacher":
-                return redirect("/teacher/dashboard")
-
-            elif role == "admin":
-                return redirect("/admin")
+            session["role"] = "student"
+            
+            return redirect("/student/dashboard")
 
         else:
             return render_template("login.html", error="Invalid credentials")
